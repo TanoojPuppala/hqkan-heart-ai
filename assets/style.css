@@ -150,3 +150,20 @@ html, body, [class*="css"] {
     border-top: 1px solid #E2E8F0;
     margin-top: 40px;
 }
+
+/* Hide Streamlit default header, footer, deploy button, and crown logo branding */
+#MainMenu {visibility: hidden !important;}
+header {visibility: hidden !important;}
+footer {visibility: hidden !important;}
+.stDeployButton {display: none !important;}
+[data-testid="stHeader"] {display: none !important;}
+[data-testid="stFooter"] {display: none !important;}
+[data-testid="stDecoration"] {display: none !important;}
+[data-testid="stToolbar"] {display: none !important;}
+[data-testid="stStatusWidget"] {visibility: hidden !important;}
+#stDecoration {display: none !important;}
+div[class*="stDeployButton"] {display: none !important;}
+.viewerBadge_container__1QSob {display: none !important;}
+.styles_viewerBadge__1yB5g {display: none !important;}
+a[href*="streamlit.io"] {display: none !important;}
+a[href*="github.com"] {display: none !important;}

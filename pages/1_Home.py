@@ -97,7 +97,7 @@ def render_home():
     with t3:
         st.info("**pyKAN**\n\nKAN Splines")
     with t4:
-        st.info("**Streamlit**\n\nProduction Web UI")
+        st.info("**Web App**\n\nClinical Dashboard")
     with t5:
         st.info("**SHAP**\n\nModel Explainability")
     with t6:

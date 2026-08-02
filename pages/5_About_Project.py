@@ -43,7 +43,7 @@ def render_about():
             <p style="color: #64748B; font-size: 0.93rem;">
             1. Formulate a single-channel <b>HQ-KAN</b> architecture combining KAN spline pre-layers with 8-qubit Variational Quantum Circuits.<br>
             2. Eliminate data leakage and recover PCA compression signal loss using a <b>classical feature-fusion skip branch</b>.<br>
-            3. Provide <b>Bayesian MC Dropout</b> uncertainty quantification and <b>SHAP</b> explainability in a live Streamlit application.
+            3. Provide <b>Bayesian MC Dropout</b> uncertainty quantification and <b>SHAP</b> explainability in a live clinical application.
             </p>
         </div>
         """, unsafe_allow_html=True)
@@ -106,7 +106,7 @@ def render_about():
         {"Feature": "Qubits Measured", "Verdone 2026": "2 of 9 (22%)", "Kumar 2025": "QSVM Kernel", "KACQ-DCNN 2024": "4 of 4", "YOUR PROJECT (HQ-KAN)": "All 8 of 8 Qubits"},
         {"Feature": "Bayesian Uncertainty", "Verdone 2026": "None", "Kumar 2025": "None", "KACQ-DCNN 2024": "None", "YOUR PROJECT (HQ-KAN)": "Bayesian MC Dropout (50 passes)"},
         {"Feature": "Explainability", "Verdone 2026": "None", "Kumar 2025": "None", "KACQ-DCNN 2024": "SHAP + LIME", "YOUR PROJECT (HQ-KAN)": "SHAP KernelExplainer"},
-        {"Feature": "Web Application", "Verdone 2026": "None", "Kumar 2025": "None", "KACQ-DCNN 2024": "None", "YOUR PROJECT (HQ-KAN)": "Streamlit Production Web App"},
+        {"Feature": "Web Application", "Verdone 2026": "None", "Kumar 2025": "None", "KACQ-DCNN 2024": "None", "YOUR PROJECT (HQ-KAN)": "Deployed Production Web App"},
         {"Feature": "Accuracy", "Verdone 2026": "90.98%", "Kumar 2025": "97.83%", "KACQ-DCNN 2024": "92.03%", "YOUR PROJECT (HQ-KAN)": "92.5% Target Accuracy"}
     ]
 
@@ -122,7 +122,7 @@ def render_about():
     - **Institution**: NRI Institute of Technology, Agiripalli
     - **Department**: Department of Computer Science & Engineering / Artificial Intelligence
     - **Project Title**: HQ-KAN: Hybrid Quantum Kolmogorov-Arnold Network with Bayesian Uncertainty Quantification for Early Heart Disease Prediction
-    - **Frameworks Used**: PennyLane Quantum Computing Framework, PyTorch Deep Learning Library, pyKAN, Streamlit, Scikit-Learn.
+    - **Frameworks Used**: PennyLane Quantum Computing Framework, PyTorch Deep Learning Library, pyKAN, Scikit-Learn.
     """)
 
 if __name__ == "__main__":
