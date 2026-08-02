@@ -1,0 +1,20 @@
+# Python Bytecode and Cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.venv/
+venv/
+ENV/
+env/
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+
+# Streamlit Local Configuration
+.streamlit/
+
+# OS Specific
+.DS_Store
+Thumbs.db
