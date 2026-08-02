@@ -187,18 +187,28 @@ code {
 }
 
 /* Hide Streamlit default header, footer, deploy button, and crown logo branding */
-#MainMenu {visibility: hidden !important;}
-header {visibility: hidden !important;}
-footer {visibility: hidden !important;}
+#MainMenu {visibility: hidden !important; display: none !important;}
+header {visibility: hidden !important; display: none !important;}
+footer {visibility: hidden !important; display: none !important;}
 .stDeployButton {display: none !important;}
 [data-testid="stHeader"] {display: none !important;}
 [data-testid="stFooter"] {display: none !important;}
 [data-testid="stDecoration"] {display: none !important;}
 [data-testid="stToolbar"] {display: none !important;}
-[data-testid="stStatusWidget"] {visibility: hidden !important;}
+[data-testid="stStatusWidget"] {visibility: hidden !important; display: none !important;}
 #stDecoration {display: none !important;}
 div[class*="stDeployButton"] {display: none !important;}
 .viewerBadge_container__1QSob {display: none !important;}
 .styles_viewerBadge__1yB5g {display: none !important;}
 a[href*="streamlit.io"] {display: none !important;}
 a[href*="github.com"] {display: none !important;}
+
+/* Hide Streamlit Community Cloud "Manage app" floating button & viewer badges */
+[data-testid="manage-app-button"] {display: none !important;}
+button[title*="Manage app"] {display: none !important;}
+div[class*="manageApp"] {display: none !important;}
+div[class*="stAppViewer"] {display: none !important;}
+div[class*="viewerBadge"] {display: none !important;}
+div[class*="styles_viewerBadge"] {display: none !important;}
+footer[class*="styles_footer"] {display: none !important;}
+.stAppHeader {display: none !important;}
