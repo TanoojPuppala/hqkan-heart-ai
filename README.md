@@ -15,18 +15,39 @@ Production-quality Streamlit Web Application implementing a **Hybrid Quantum Kol
 
 ---
 
-## 📁 Repository Structure
+## 📁 Production Directory Structure
 
 ```
 hqkan_app/
 ├── app.py                     # Main Streamlit application entrypoint & page router
 ├── config.py                  # Global configurations, paths, and feature metadata
 ├── requirements.txt           # Python dependencies for local & cloud deployment
-├── README.md                  # Detailed project documentation
-├── .gitignore                 # Git ignore patterns
+├── runtime.txt                # Python runtime version specification (python-3.10.11)
+├── LICENSE                    # MIT License
+├── README.md                  # Comprehensive project documentation
+├── .gitignore                 # Production Git ignore rules
 │
 ├── assets/
 │   └── style.css              # Custom Deep Blue & Teal medical dashboard styling
+│
+├── data/
+│   └── heart.csv              # UCI Combined 918 Patient Dataset
+│
+├── docs/
+│   ├── HQ_KAN_FIXED_(1).ipynb # Original Colab Training Notebook
+│   └── extracted_notebook_code.py # Extracted reference code
+│
+├── models/
+│   ├── best_hqkan.pt          # Pre-trained PyTorch model weights checkpoint
+│   ├── angle_scaler.pkl       # Fitted MinMaxScaler for AngleEmbedding [0, pi]
+│   ├── pca.pkl                # Fitted PCA transformer (8 components)
+│   ├── pca_scaler.pkl         # Fitted MinMaxScaler for PCA components [-pi/2, pi/2]
+│   ├── skip_scaler.pkl        # Fitted MinMaxScaler for skip branch [-pi/2, pi/2]
+│   ├── skip_cols.pkl          # Feature names for fusion skip branch
+│   └── feature_cols.pkl       # All one-hot feature column names
+│
+├── outputs/
+│   └── .gitkeep               # Directory for generated PDF and CSV exports
 │
 ├── utils/
 │   ├── predictor.py           # HQKAN PyTorch model & PennyLane VQC QNode
@@ -36,21 +57,12 @@ hqkan_app/
 │   ├── charts.py              # Interactive Plotly charts (Gauges, ROC, CM, Training)
 │   └── report_generator.py    # Downloadable PDF clinical reports & CSV exports
 │
-├── pages/
-│   ├── 1_Home.py              # Hero banner, feature cards, & live metrics
-│   ├── 2_Predict.py           # Patient input form, risk engine, & PDF download
-│   ├── 3_Model_Performance.py # Performance metrics & 5-model ablation study
-│   ├── 4_SHAP_Explainability.py# SHAP summary & feature contribution breakdown
-│   └── 5_About_Project.py     # 5-Station architecture, dataset, & college credits
-│
-└── models / Root Checkpoints/
-    ├── best_hqkan.pt          # Pre-trained PyTorch model checkpoint weights
-    ├── angle_scaler.pkl       # Fitted MinMaxScaler for AngleEmbedding [0, pi]
-    ├── pca.pkl                # Fitted PCA transformer (8 components)
-    ├── pca_scaler.pkl         # Fitted MinMaxScaler for PCA components [-pi/2, pi/2]
-    ├── skip_scaler.pkl        # Fitted MinMaxScaler for skip branch [-pi/2, pi/2]
-    ├── skip_cols.pkl          # Feature names for fusion skip branch
-    └── feature_cols.pkl       # All one-hot feature column names
+└── pages/
+    ├── 1_Home.py              # Hero banner, feature cards, & live metrics
+    ├── 2_Predict.py           # Patient input form, risk engine, & PDF download
+    ├── 3_Model_Performance.py # Performance metrics & 5-model ablation study
+    ├── 4_SHAP_Explainability.py# SHAP summary & feature contribution breakdown
+    └── 5_About_Project.py     # 5-Station architecture, dataset, & college credits
 ```
 
 ---
@@ -74,7 +86,11 @@ streamlit run app.py
 
 ## 🌐 Cloud Deployment (Streamlit Community Cloud / GitHub / Render)
 
-1. Push this project repository to **GitHub**.
+1. Push this project repository to **GitHub**:
+   ```bash
+   git remote add origin https://github.com/TanoojPuppala/<YOUR_REPO_NAME>.git
+   git push -u origin main
+   ```
 2. Go to [share.streamlit.io](https://share.streamlit.io/).
 3. Connect your GitHub account and select your repository.
 4. Set the Main File Path to `app.py`.
@@ -82,8 +98,10 @@ streamlit run app.py
 
 ---
 
-## 🎓 Academic Credit & Institution
+## 🎓 Academic Credit & Developer Information
 
+- **Developer**: Tanooj Puppala
 - **Project**: B.Tech Final Year Engineering Project
 - **Institution**: NRI Institute of Technology, Agiripalli
 - **Title**: HQ-KAN: Hybrid Quantum Kolmogorov-Arnold Network with Bayesian Uncertainty Quantification for Early Heart Disease Prediction
+- **License**: MIT License

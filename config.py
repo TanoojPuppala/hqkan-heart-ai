@@ -9,15 +9,19 @@ from pathlib import Path
 # Base directory
 BASE_DIR = Path(__file__).resolve().parent
 
-# Artifact Paths
-MODEL_PATH = BASE_DIR / "best_hqkan.pt"
-ANGLE_SCALER_PATH = BASE_DIR / "angle_scaler.pkl"
-PCA_PATH = BASE_DIR / "pca.pkl"
-PCA_SCALER_PATH = BASE_DIR / "pca_scaler.pkl"
-SKIP_SCALER_PATH = BASE_DIR / "skip_scaler.pkl"
-SKIP_COLS_PATH = BASE_DIR / "skip_cols.pkl"
-FEATURE_COLS_PATH = BASE_DIR / "feature_cols.pkl"
-DATASET_PATH = BASE_DIR / "heart.csv"
+# Artifact & Resource Paths
+MODELS_DIR = BASE_DIR / "models"
+DATA_DIR = BASE_DIR / "data"
+OUTPUTS_DIR = BASE_DIR / "outputs"
+
+MODEL_PATH = MODELS_DIR / "best_hqkan.pt"
+ANGLE_SCALER_PATH = MODELS_DIR / "angle_scaler.pkl"
+PCA_PATH = MODELS_DIR / "pca.pkl"
+PCA_SCALER_PATH = MODELS_DIR / "pca_scaler.pkl"
+SKIP_SCALER_PATH = MODELS_DIR / "skip_scaler.pkl"
+SKIP_COLS_PATH = MODELS_DIR / "skip_cols.pkl"
+FEATURE_COLS_PATH = MODELS_DIR / "feature_cols.pkl"
+DATASET_PATH = DATA_DIR / "heart.csv"
 
 # Model Hyperparameters
 N_QUBITS = 8

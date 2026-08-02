@@ -1,20 +1,43 @@
-# Python Bytecode and Cache
+# Python Bytecode & Compiled Files
 __pycache__/
 *.py[cod]
 *$py.class
+*.so
 
-# Environments
+# Virtual Environments & Packages
 .venv/
 venv/
 ENV/
 env/
+env.bak/
+venv.bak/
+
+# Streamlit Local Runtime & Config
+.streamlit/
+
+# Temporary Files & Logs
+*.log
+*.tmp
+*.temp
+.cache/
 
 # Jupyter Notebook Checkpoints
 .ipynb_checkpoints/
 
-# Streamlit Local Configuration
-.streamlit/
+# IDE & Editor Specific
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
 
-# OS Specific
+# Operating System Specific
 .DS_Store
 Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Generated Outputs
+outputs/*
+!outputs/.gitkeep
