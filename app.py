@@ -25,26 +25,10 @@ def load_css():
 
 load_css()
 
-# 3. Left Sidebar Navigation & Controls
+# 3. Left Sidebar Status & Controls
 with st.sidebar:
     st.markdown("## 🏥 HQ-KAN Clinical AI")
     st.caption("Hybrid Quantum Kolmogorov-Arnold Network with Bayesian Uncertainty")
-    st.divider()
-
-    st.markdown("### 🧭 Navigation")
-    selected_page = st.radio(
-        "Select Application View:",
-        options=[
-            "🏠 Home Dashboard",
-            "🩺 Heart Disease Prediction",
-            "📊 Model Performance",
-            "💡 SHAP Explainability",
-            "📚 About Project & Research"
-        ],
-        index=0,
-        label_visibility="collapsed"
-    )
-
     st.divider()
 
     # Sidebar Quick Metric Badges
@@ -57,27 +41,7 @@ with st.sidebar:
     - **Status**: `🟢 Active & Ready`
     """)
 
-
-
+# 4. Default Home Dashboard View
 import importlib
-
-# 4. Page Routing Logic
-if selected_page == "🏠 Home Dashboard":
-    page_home = importlib.import_module("pages.1_Home")
-    page_home.render_home()
-
-elif selected_page == "🩺 Heart Disease Prediction":
-    page_predict = importlib.import_module("pages.2_Predict")
-    page_predict.render_predict()
-
-elif selected_page == "📊 Model Performance":
-    page_perf = importlib.import_module("pages.3_Model_Performance")
-    page_perf.render_performance()
-
-elif selected_page == "💡 SHAP Explainability":
-    page_shap = importlib.import_module("pages.4_SHAP_Explainability")
-    page_shap.render_shap_page()
-
-elif selected_page == "📚 About Project & Research":
-    page_about = importlib.import_module("pages.5_About_Project")
-    page_about.render_about()
+page_home = importlib.import_module("pages.1_Home")
+page_home.render_home()
