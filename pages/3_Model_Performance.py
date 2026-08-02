@@ -21,11 +21,11 @@ def render_performance():
     # Top Key Metrics Row
     m1, m2, m3, m4, m5, m6 = st.columns(6)
     with m1:
-        st.metric("🎯 Accuracy", "92.5%", delta="+3.9% vs MLP")
+        st.metric("🎯 Accuracy", "88.0%", delta="Empirical Model")
     with m2:
-        st.metric("🎯 F1-Score", "0.920", delta="Balanced")
+        st.metric("🎯 F1-Score", "0.891", delta="Balanced")
     with m3:
-        st.metric("📈 ROC-AUC", "0.942", delta="High Discrimination")
+        st.metric("📈 ROC-AUC", "0.905", delta="High Discrimination")
     with m4:
         st.metric("🔍 Precision", "90.4%", delta="Low FP")
     with m5:
@@ -64,7 +64,7 @@ def render_performance():
     st.markdown("##### 📋 Detailed Empirical Comparison Table")
     
     ablation_data = [
-        {"Model Architecture": "HQ-KAN (Proposed Ours)", "Accuracy (%)": "92.5%", "F1-Score": "0.920", "ROC-AUC": "0.942", "Parameters": "457", "Novelty Status": "Proposed Model"},
+        {"Model Architecture": "HQ-KAN (Proposed Ours)", "Accuracy (%)": "88.0%", "F1-Score": "0.891", "ROC-AUC": "0.905", "Parameters": "457", "Novelty Status": "Proposed Model"},
         {"Model Architecture": "Random Forest Ensemble", "Accuracy (%)": "88.6%", "F1-Score": "0.881", "ROC-AUC": "0.912", "Parameters": "N/A", "Novelty Status": "Classical Baseline"},
         {"Model Architecture": "Classical MLP (Same Depth)", "Accuracy (%)": "87.5%", "F1-Score": "0.872", "ROC-AUC": "0.908", "Parameters": "418", "Novelty Status": "No Quantum / KAN"},
         {"Model Architecture": "VQC Only (Quantum Only)", "Accuracy (%)": "85.3%", "F1-Score": "0.845", "ROC-AUC": "0.884", "Parameters": "96", "Novelty Status": "No KAN / Skip"},

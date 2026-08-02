@@ -34,7 +34,7 @@ with st.sidebar:
     # Sidebar Quick Metric Badges
     st.markdown("### ⚡ Model Status")
     st.markdown("""
-    - **Model Accuracy**: `92.5%`
+    - **Model Accuracy**: `88.0%`
     - **Quantum Circuit**: `8-Qubit VQC`
     - **Uncertainty**: `Bayesian MC (50)`
     - **Dataset Size**: `918 Patients`

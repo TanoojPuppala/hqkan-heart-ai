@@ -27,7 +27,7 @@ def render_home():
     # Top Key Metrics Highlights
     m1, m2, m3, m4 = st.columns(4)
     with m1:
-        st.metric(label="🎯 Model Accuracy", value="92.5%", delta="+3.9% vs MLP")
+        st.metric(label="🎯 Model Accuracy", value="88.0%", delta="Empirical Model")
     with m2:
         st.metric(label="📊 UCI Dataset Size", value="918 Patients", delta="5 Global Hospitals")
     with m3:
