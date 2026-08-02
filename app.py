@@ -57,15 +57,7 @@ with st.sidebar:
     - **Status**: `🟢 Active & Ready`
     """)
 
-    st.divider()
 
-    st.markdown("""
-    <div style="font-size: 0.78rem; color: #94A3B8; text-align: center;">
-        B.Tech Final Year Project<br>
-        <b>NRI Institute of Technology, Agiripalli</b><br>
-        PennyLane + PyTorch + KAN
-    </div>
-    """, unsafe_allow_html=True)
 
 import importlib
 
