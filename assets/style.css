@@ -212,3 +212,31 @@ div[class*="viewerBadge"] {display: none !important;}
 div[class*="styles_viewerBadge"] {display: none !important;}
 footer[class*="styles_footer"] {display: none !important;}
 .stAppHeader {display: none !important;}
+
+/* Custom Animated Medical Pulse Loading Spinner */
+@keyframes spin-pulse {
+  0% { transform: rotate(0deg) scale(0.95); }
+  50% { transform: rotate(180deg) scale(1.05); }
+  100% { transform: rotate(360deg) scale(0.95); }
+}
+
+[data-testid="stSpinner"] > div {
+    border-top-color: #00A896 !important;
+    border-right-color: #00F2FE !important;
+    border-bottom-color: #0A2540 !important;
+    border-left-color: #2ECC71 !important;
+    animation: spin-pulse 0.9s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite !important;
+    width: 36px !important;
+    height: 36px !important;
+}
+
+[data-testid="stSpinner"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(10, 37, 64, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(0, 168, 150, 0.2);
+    margin: 15px 0;
+}
