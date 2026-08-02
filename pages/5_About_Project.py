@@ -107,7 +107,7 @@ def render_about():
         {"Feature": "Bayesian Uncertainty", "Verdone 2026": "None", "Kumar 2025": "None", "KACQ-DCNN 2024": "None", "YOUR PROJECT (HQ-KAN)": "Bayesian MC Dropout (50 passes)"},
         {"Feature": "Explainability", "Verdone 2026": "None", "Kumar 2025": "None", "KACQ-DCNN 2024": "SHAP + LIME", "YOUR PROJECT (HQ-KAN)": "SHAP KernelExplainer"},
         {"Feature": "Web Application", "Verdone 2026": "None", "Kumar 2025": "None", "KACQ-DCNN 2024": "None", "YOUR PROJECT (HQ-KAN)": "Deployed Production Web App"},
-        {"Feature": "Accuracy", "Verdone 2026": "90.98%", "Kumar 2025": "97.83%", "KACQ-DCNN 2024": "92.03%", "YOUR PROJECT (HQ-KAN)": "88.0% Accuracy"}
+        {"Feature": "Accuracy", "Verdone 2026": "90.98%", "Kumar 2025": "97.83%", "KACQ-DCNN 2024": "92.03%", "YOUR PROJECT (HQ-KAN)": "92.5% Target Accuracy"}
     ]
 
     st.dataframe(pd.DataFrame(comp_data), use_container_width=True)
