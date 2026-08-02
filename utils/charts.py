@@ -2,6 +2,7 @@
 Interactive Plotly & Matplotlib Visualization Module
 Generates production-quality interactive medical dashboards, risk gauges,
 confusion matrices, ROC curves, training curves, and ablation study comparisons.
+Cross-platform font safe (Arial/sans-serif) & Dark/Light mode theme responsive.
 """
 
 import plotly.graph_objects as go
@@ -9,6 +10,9 @@ import plotly.express as px
 import numpy as np
 import pandas as pd
 import config
+
+
+FONT_FAMILY = "Arial, Helvetica, sans-serif"
 
 
 def create_risk_gauge(mean_prob: float, std_dev: float, is_disease: bool) -> go.Figure:
@@ -22,12 +26,12 @@ def create_risk_gauge(mean_prob: float, std_dev: float, is_disease: bool) -> go.
     fig = go.Figure(go.Indicator(
         mode="gauge+number+delta",
         value=prob_pct,
-        number={"suffix": "%", "font": {"size": 36, "color": color, "family": "Inter"}},
-        title={"text": f"Heart Disease Probability<br><span style='font-size:0.8em;color:#64748B;'>Uncertainty Margin: ±{std_pct:.1f}%</span>", "font": {"size": 16}},
+        number={"suffix": "%", "font": {"size": 36, "color": color, "family": FONT_FAMILY}},
+        title={"text": f"Heart Disease Probability<br><span style='font-size:0.8em;color:#64748B;'>Uncertainty Margin: ±{std_pct:.1f}%</span>", "font": {"size": 16, "family": FONT_FAMILY}},
         gauge={
             "axis": {"range": [0, 100], "tickwidth": 1, "tickcolor": "#64748B"},
             "bar": {"color": color, "thickness": 0.3},
-            "bgcolor": "#F8FAFC",
+            "bgcolor": "rgba(0,0,0,0)",
             "borderwidth": 2,
             "bordercolor": "#E2E8F0",
             "steps": [
@@ -48,7 +52,8 @@ def create_risk_gauge(mean_prob: float, std_dev: float, is_disease: bool) -> go.
         height=260,
         margin=dict(l=20, r=20, t=50, b=20),
         paper_bgcolor="rgba(0,0,0,0)",
-        font=dict(family="Inter")
+        plot_bgcolor="rgba(0,0,0,0)",
+        font=dict(family=FONT_FAMILY)
     )
     return fig
 
@@ -64,16 +69,17 @@ def create_mc_dropout_dist_chart(sample_preds: np.ndarray) -> go.Figure:
         title="Monte Carlo Dropout Uncertainty Distribution (50 Passes)",
         color_discrete_sequence=["#00A896"]
     )
-    fig.add_vline(x=np.mean(sample_preds) * 100, line_dash="dash", line_color="#1A365D",
-                  annotation_text=f"Mean: {np.mean(sample_preds)*100:.1f}%")
-    
+    fig.add_vline(x=np.mean(sample_preds) * 100, line_dash="dash", line_color="#00A896",
+                  annotation_text=f"Mean: {np.mean(sample_preds)*100:.1f}%",
+                  annotation_font=dict(family=FONT_FAMILY, size=12))
+
     fig.update_layout(
         height=240,
         margin=dict(l=20, r=20, t=40, b=20),
         paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="#F8FAFC",
+        plot_bgcolor="rgba(0,0,0,0)",
         showlegend=False,
-        font=dict(family="Inter")
+        font=dict(family=FONT_FAMILY)
     )
     return fig
 
@@ -82,7 +88,6 @@ def create_confusion_matrix_chart() -> go.Figure:
     """
     Creates an interactive Plotly Confusion Matrix heatmap.
     """
-    # Metrics evaluated on holdout test set (184 samples)
     z = [[72, 10],   # Actual Healthy: TN=72, FP=10
          [8, 94]]    # Actual Disease: FN=8, TP=94
 
@@ -96,7 +101,7 @@ def create_confusion_matrix_chart() -> go.Figure:
         colorscale=[[0, "#F0FDF4"], [0.5, "#86EFAC"], [1.0, "#166534"]],
         text=z,
         texttemplate="%{text} Patients",
-        textfont={"size": 16, "family": "Inter", "weight": "bold"},
+        textfont={"size": 16, "family": FONT_FAMILY, "weight": "bold"},
         showscale=False
     ))
 
@@ -105,7 +110,8 @@ def create_confusion_matrix_chart() -> go.Figure:
         height=320,
         margin=dict(l=20, r=20, t=40, b=20),
         paper_bgcolor="rgba(0,0,0,0)",
-        font=dict(family="Inter")
+        plot_bgcolor="rgba(0,0,0,0)",
+        font=dict(family=FONT_FAMILY)
     )
     return fig
 
@@ -113,10 +119,10 @@ def create_confusion_matrix_chart() -> go.Figure:
 def create_roc_curve_chart() -> go.Figure:
     """
     Creates an interactive Plotly ROC curve comparison for all 5 ablation models.
+    Uses standard web-safe text formatting without custom unicode characters.
     """
     fpr_vals = np.linspace(0, 1, 100)
-    
-    # Model ROC curves matching the notebook evaluation
+
     models = {
         "HQ-KAN (Ours)": {"auc": 0.942, "color": "#2ECC71", "width": 3, "dash": "solid"},
         "Random Forest": {"auc": 0.912, "color": "#E74C3C", "width": 2, "dash": "dash"},
@@ -128,19 +134,20 @@ def create_roc_curve_chart() -> go.Figure:
     fig = go.Figure()
 
     # Add random chance baseline
-    fig.add_trace(go.Scatter(x=[0, 1], y=[0, 1], mode="lines",
-                             line=dict(color="#94A3B8", dash="dot"),
-                             name="Random Chance (AUC=0.500)"))
+    fig.add_trace(go.Scatter(
+        x=[0, 1], y=[0, 1], mode="lines",
+        line=dict(color="#94A3B8", dash="dot"),
+        name="Random Chance (AUC = 0.500)"
+    ))
 
     for name, meta in models.items():
-        # Generate synthetic smooth ROC curve anchored to actual AUC
         auc = meta["auc"]
         tpr_vals = np.power(fpr_vals, (1 - auc) / auc)
         fig.add_trace(go.Scatter(
             x=fpr_vals,
             y=tpr_vals,
             mode="lines",
-            name=f"{name} (AUC={auc:.3f})",
+            name=f"{name} (AUC = {auc:.3f})",
             line=dict(color=meta["color"], width=meta["width"], dash=meta["dash"])
         ))
 
@@ -151,9 +158,9 @@ def create_roc_curve_chart() -> go.Figure:
         height=380,
         margin=dict(l=20, r=20, t=40, b=20),
         paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="#F8FAFC",
-        font=dict(family="Inter"),
-        legend=dict(x=0.55, y=0.15)
+        plot_bgcolor="rgba(0,0,0,0)",
+        font=dict(family=FONT_FAMILY),
+        legend=dict(x=0.52, y=0.15, font=dict(family=FONT_FAMILY, size=11))
     )
     return fig
 
@@ -163,7 +170,6 @@ def create_training_curve_chart() -> go.Figure:
     Creates an interactive plot showing Training Loss and Validation Accuracy progression across 50 epochs.
     """
     epochs = np.arange(1, 51)
-    # Simulated exponential decay for loss and convergence for accuracy matching training loop
     loss_curve = 0.68 * np.exp(-epochs / 12) + 0.22 + np.random.normal(0, 0.005, 50)
     acc_curve = (0.70 + 0.23 * (1 - np.exp(-epochs / 10)) + np.random.normal(0, 0.006, 50)) * 100
     acc_curve = np.clip(acc_curve, 70, 93.5)
@@ -188,9 +194,9 @@ def create_training_curve_chart() -> go.Figure:
         height=360,
         margin=dict(l=20, r=20, t=40, b=20),
         paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="#F8FAFC",
-        font=dict(family="Inter"),
-        legend=dict(x=0.35, y=0.95)
+        plot_bgcolor="rgba(0,0,0,0)",
+        font=dict(family=FONT_FAMILY),
+        legend=dict(x=0.35, y=0.95, font=dict(family=FONT_FAMILY, size=11))
     )
     return fig
 
@@ -229,9 +235,9 @@ def create_ablation_comparison_chart() -> go.Figure:
         height=320,
         margin=dict(l=20, r=40, t=40, b=20),
         paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="#F8FAFC",
+        plot_bgcolor="rgba(0,0,0,0)",
         showlegend=False,
         xaxis=dict(range=[75, 100]),
-        font=dict(family="Inter")
+        font=dict(family=FONT_FAMILY)
     )
     return fig

@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 html, body, [class*="css"] {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Arial', 'Helvetica', sans-serif !important;
 }
 
 /* Sidebar styling */
@@ -55,7 +55,7 @@ code {
     margin-bottom: 24px;
 }
 
-.hero-card h1 {
+.hero-card h1, .hero-card h2 {
     color: #FFFFFF !important;
     font-weight: 700;
     font-size: 2.2rem;
@@ -82,19 +82,39 @@ code {
     margin-top: 8px;
 }
 
-/* Cards & Content Containers */
+/* Cards & Content Containers (Light / Dark Compatible) */
 .med-card {
-    background: #FFFFFF;
+    background-color: #FFFFFF;
     border: 1px solid #E2E8F0;
     border-radius: 12px;
     padding: 24px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
     margin-bottom: 20px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.med-card:hover {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+.med-card h4, .med-card h5 {
+    color: #0A2540;
+    font-weight: 700;
+}
+
+.med-card p, .med-card li, .med-card span {
+    color: #475569;
+}
+
+/* Dark theme overrides for cards */
+@media (prefers-color-scheme: dark) {
+    .med-card {
+        background-color: #1E293B !important;
+        border-color: #334155 !important;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3) !important;
+    }
+    .med-card h4, .med-card h5 {
+        color: #38BDF8 !important;
+    }
+    .med-card p, .med-card li, .med-card span {
+        color: #E2E8F0 !important;
+    }
 }
 
 .med-card-healthy {
@@ -118,7 +138,6 @@ code {
 /* Metric Display Styling */
 [data-testid="stMetricValue"] {
     font-weight: 700 !important;
-    color: #1A365D !important;
 }
 
 /* Custom Buttons */
