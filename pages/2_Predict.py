@@ -43,44 +43,62 @@ def render_predict():
     st.title("🩺 Heart Disease Risk Prediction Engine")
     st.caption("Input patient diagnostic measurements to perform HQ-KAN Quantum Inference with Bayesian Uncertainty & SHAP Explainability.")
 
-    # Preset Patient Controls
-    st.subheader("📋 Preset Patient Profiles & Tools")
-    c1, c2, c3, c4 = st.columns(4)
+    # Requirement 2: Preset Patient Profile Buttons (High-Risk, Low-Risk, Clear)
+    st.subheader("📋 Preset Patient Profiles & Quick Action Tools")
+    c1, c2, c3 = st.columns(3)
 
     with c1:
-        if st.button("💚 Sample Healthy Patient", use_container_width=True):
-            st.session_state["patient_input"] = config.PRESET_PATIENTS["Sample Healthy Patient"].copy()
-            st.toast("Loaded Sample Healthy Patient profile!", icon="💚")
+        if st.button("🔴 Load High-Risk Patient", use_container_width=True):
+            st.session_state["patient_input"] = {
+                "Age": 63,
+                "Sex": "M",
+                "ChestPainType": "ASY",
+                "RestingBP": 145,
+                "Cholesterol": 233,
+                "FastingBS": 1,
+                "RestingECG": "LVH",
+                "MaxHR": 150,
+                "ExerciseAngina": "N",
+                "Oldpeak": 2.3,
+                "ST_Slope": "Down"
+            }
+            st.toast("Loaded High-Risk Patient profile!", icon="🔴")
             st.rerun()
 
     with c2:
-        if st.button("🚨 Sample High-Risk Patient", use_container_width=True):
-            st.session_state["patient_input"] = config.PRESET_PATIENTS["Sample High-Risk Patient"].copy()
-            st.toast("Loaded Sample High-Risk Patient profile!", icon="🚨")
+        if st.button("🟢 Load Low-Risk Patient", use_container_width=True):
+            st.session_state["patient_input"] = {
+                "Age": 35,
+                "Sex": "F",
+                "ChestPainType": "ATA",
+                "RestingBP": 110,
+                "Cholesterol": 180,
+                "FastingBS": 0,
+                "RestingECG": "Normal",
+                "MaxHR": 190,
+                "ExerciseAngina": "N",
+                "Oldpeak": 0.0,
+                "ST_Slope": "Up"
+            }
+            st.toast("Loaded Low-Risk Patient profile!", icon="🟢")
             st.rerun()
 
     with c3:
-        if st.button("🎲 Random Patient", use_container_width=True):
+        if st.button("🔄 Clear Form", use_container_width=True):
             st.session_state["patient_input"] = {
-                "Age": random.randint(25, 80),
-                "Sex": random.choice(["M", "F"]),
-                "ChestPainType": random.choice(["ASY", "ATA", "NAP", "TA"]),
-                "RestingBP": random.randint(95, 180),
-                "Cholesterol": random.randint(120, 380),
-                "FastingBS": random.choice([0, 1]),
-                "RestingECG": random.choice(["Normal", "ST", "LVH"]),
-                "MaxHR": random.randint(85, 195),
-                "ExerciseAngina": random.choice(["N", "Y"]),
-                "Oldpeak": round(random.uniform(0.0, 4.5), 1),
-                "ST_Slope": random.choice(["Up", "Flat", "Down"])
+                "Age": 54,
+                "Sex": "M",
+                "ChestPainType": "ASY",
+                "RestingBP": 130,
+                "Cholesterol": 223,
+                "FastingBS": 0,
+                "RestingECG": "Normal",
+                "MaxHR": 140,
+                "ExerciseAngina": "N",
+                "Oldpeak": 1.0,
+                "ST_Slope": "Flat"
             }
-            st.toast("Generated random patient values!", icon="🎲")
-            st.rerun()
-
-    with c4:
-        if st.button("🔄 Reset Form", use_container_width=True):
-            st.session_state["patient_input"] = config.PRESET_PATIENTS["Sample Healthy Patient"].copy()
-            st.toast("Form reset to default values.", icon="🔄")
+            st.toast("Form reset to default neutral parameters.", icon="🔄")
             st.rerun()
 
     st.divider()
@@ -203,10 +221,6 @@ def render_predict():
     # Update session state with current form values
     st.session_state["patient_input"] = new_input
 
-    # Clinical Warning checks
-    if new_input["RestingBP"] > 140 or new_input["Cholesterol"] > 240:
-        st.warning("⚠️ Elevated vital signs detected (High BP / High Cholesterol).")
-
     st.write("")
 
     # Predict Button
@@ -215,6 +229,19 @@ def render_predict():
     if predict_clicked or "last_prediction" in st.session_state:
 
         if predict_clicked:
+            # Requirement 3: Input Validation Checks
+            if new_input["RestingBP"] < 80:
+                st.warning("Resting BP seems too low — should be between 80 and 200 mmHg")
+                st.stop()
+
+            if new_input["Cholesterol"] < 100:
+                st.warning("Cholesterol seems too low — should be between 100 and 600 mg/dl")
+                st.stop()
+
+            if new_input["MaxHR"] < 60:
+                st.warning("Max Heart Rate seems too low — should be between 60 and 220 bpm")
+                st.stop()
+
             with st.spinner("Processing Quantum Feature Maps & Running 50 Monte Carlo Dropout Passes..."):
                 try:
                     # 1. Preprocess patient inputs
@@ -296,9 +323,31 @@ def render_predict():
 
         st.write("")
 
-        # Visual Breakdown Tabs
-        tab1, tab2, tab3 = st.columns(3)
+        # Requirement 4: Visual Risk Meter Progress Bar
+        prob_pct = pred_res["mean_prob"] * 100
+        if pred_res["mean_prob"] < 0.30:
+            bar_color = "#2ECC71"
+            risk_label = "LOW RISK"
+        elif pred_res["mean_prob"] <= 0.60:
+            bar_color = "#F39C12"
+            risk_label = "MODERATE RISK"
+        else:
+            bar_color = "#E74C3C"
+            risk_label = "HIGH RISK"
 
+        bar_text = f"{risk_label} ({prob_pct:.1f}%)"
+
+        st.markdown(f"""
+        <div style="width: 100%; background-color: #E2E8F0; border-radius: 10px; height: 30px; position: relative; margin-top: 15px; margin-bottom: 20px; overflow: hidden; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);">
+            <div style="width: {max(prob_pct, 18.0):.1f}%; background-color: {bar_color}; height: 30px; border-radius: 10px; transition: width 0.6s ease; display: flex; align-items: center; justify-content: center;">
+                <span style="color: #FFFFFF; font-weight: bold; font-size: 0.9rem; white-space: nowrap; padding: 0 10px; text-shadow: 0 1px 2px rgba(0,0,0,0.3);">{bar_text}</span>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        st.divider()
+
+        # SHAP & Uncertainty Distribution Section
         st.subheader("💡 SHAP Feature Attribution & Uncertainty Distribution")
         s_col1, s_col2 = st.columns(2)
 
