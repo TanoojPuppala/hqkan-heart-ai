@@ -122,3 +122,20 @@ with st.expander("📈 Model Performance — Research Results", expanded=False):
     - 🧠 **KAN pre-layer adapts activation shapes to cardiac data** unlike fixed ReLU or Tanh activation functions.
     - 📊 **All results evaluated on UCI Heart Disease Dataset** comprising 918 patients from 5 global hospitals (Cleveland, Hungarian, Statlog, VA Long Beach, Zurich).
     """)
+
+# 6. Medical Disclaimer Box & Footer Caption
+st.write("")
+
+st.markdown("""
+<div style="background-color: #FEF9E7; border: 1.5px solid #F39C12; border-radius: 8px; padding: 12px; margin-top: 20px; margin-bottom: 15px;">
+    <p style="color: #7D6608 !important; font-size: 0.88rem; margin: 0; line-height: 1.5;">
+        <b>⚕️ Medical Disclaimer:</b> This tool is developed as a B.Tech final year research project at NRI Institute of Technology, Agiripalli. It is intended for academic demonstration and decision-support purposes only. It does NOT constitute medical advice and should NOT be used as a substitute for professional medical diagnosis. Always consult a qualified cardiologist for clinical decisions.
+    </p>
+</div>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+<p style="text-align: center; color: #64748B; font-size: 0.82rem; margin-top: 10px; margin-bottom: 25px;">
+    Powered by PennyLane (Quantum ML) + PyTorch + KAN | Model accuracy: ~92.5% on UCI Heart Disease Dataset (918 patients) | © 2026 NRI Agiripalli B.Tech Project
+</p>
+""", unsafe_allow_html=True)
