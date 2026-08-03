@@ -40,14 +40,47 @@ with st.sidebar:
     st.caption("Hybrid Quantum Kolmogorov-Arnold Network with Bayesian Uncertainty")
     st.divider()
 
-    # Sidebar Quick Metric Badges
-    st.markdown("### ⚡ Model Status")
+    # Section 1: About This Tool
+    st.markdown("### ℹ️ About This Tool")
+    st.info("""
+    • **KAN (Kolmogorov-Arnold Network)** for adaptive feature extraction  
+    • **Variational Quantum Circuit** with 4 qubits  
+    • **Bayesian Uncertainty Quantification** with Monte Carlo Dropout  
+    • **SHAP Explainability**
+    """)
+
+    st.divider()
+
+    # Section 2: How to Use
+    st.markdown("### 📋 How to Use")
     st.markdown("""
-    - **Model Accuracy**: `92.5%`
-    - **Quantum Circuit**: `8-Qubit VQC`
-    - **Uncertainty**: `Bayesian MC (50)`
-    - **Dataset Size**: `918 Patients`
-    - **Status**: `🟢 Active & Ready`
+    1. **Enter patient values** in the form
+    2. **Click Predict**
+    3. **See risk level** plus confidence score
+    4. **High uncertainty** means order more tests
+    """)
+
+    st.divider()
+
+    # Section 3: Model Performance
+    st.markdown("### 📊 Model Performance")
+    m_col1, m_col2 = st.columns(2)
+    m_col1.metric("Accuracy", "92.5%")
+    m_col2.metric("AUC-ROC", "93%")
+
+    m_col3, m_col4 = st.columns(2)
+    m_col3.metric("F1-Score", "88%")
+    m_col4.metric("Parameters", "96")
+
+    st.divider()
+
+    # Section 4: Tech Stack
+    st.markdown("### 🔬 Tech Stack")
+    st.markdown("""
+    • **PennyLane** for quantum computing  
+    • **PyTorch** for deep learning  
+    • **KAN** for adaptive feature extraction  
+    • **Streamlit** for web interface
     """)
 
 # 4. Default Home Dashboard View
