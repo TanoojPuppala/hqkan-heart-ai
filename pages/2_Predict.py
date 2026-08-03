@@ -314,9 +314,14 @@ def render_predict():
                 </div>
                 """, unsafe_allow_html=True)
 
-            # Clinical recommendations based on uncertainty
-            if pred_res["uncertainty_std"] > 0.08:
-                st.info("ℹ️ **High Uncertainty Alert**: Bayesian MC Dropout indicates higher variance. Physician recommended to order additional cardiac stress/echo imaging tests.")
+            # Uncertainty score clinical interpretation box
+            unc_pct = pred_res["uncertainty_std"] * 100
+            if unc_pct < 10.0:
+                st.info("ℹ️ **Uncertainty Interpretation**: Model is highly confident in this prediction. The quantum circuit produced consistent outputs across all 50 Monte Carlo samples. This result can be used with high clinical confidence.")
+            elif unc_pct <= 20.0:
+                st.warning("⚠️ **Uncertainty Interpretation**: Moderate uncertainty detected. The model shows some variability across Monte Carlo samples. Consider ordering additional tests such as echocardiogram or stress test before making a final clinical decision.")
+            else:
+                st.error("🚨 **Uncertainty Interpretation**: High uncertainty detected. The model is not confident about this prediction. This patient may have atypical feature combinations that the model has not seen frequently during training. Additional clinical investigation is strongly recommended.")
 
         with res_col2:
             st.plotly_chart(create_risk_gauge(pred_res["mean_prob"], pred_res["uncertainty_std"], pred_res["is_disease"]), use_container_width=True)
