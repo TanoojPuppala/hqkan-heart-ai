@@ -817,7 +817,7 @@ except ImportError:
 # ╔══════════════════════════════════════════════════════════╗
 # ║  CELL 16 — Write Streamlit App (YOUR FOURTH NOVELTY)    ║
 # ╚══════════════════════════════════════════════════════════╝
-%%writefile app.py
+# %%writefile app.py
 import math
 import torch, torch.nn as nn, torch.nn.functional as F
 import numpy as np, pandas as pd
