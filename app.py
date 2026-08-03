@@ -127,15 +127,15 @@ with st.expander("📈 Model Performance — Research Results", expanded=False):
 st.write("")
 
 st.markdown("""
-<div style="background-color: #FEF9E7; border: 1.5px solid #F39C12; border-radius: 8px; padding: 12px; margin-top: 20px; margin-bottom: 15px;">
-    <p style="color: #7D6608 !important; font-size: 0.88rem; margin: 0; line-height: 1.5;">
-        <b>⚕️ Medical Disclaimer:</b> This tool is developed as a B.Tech final year research project at NRI Institute of Technology, Agiripalli. It is intended for academic demonstration and decision-support purposes only. It does NOT constitute medical advice and should NOT be used as a substitute for professional medical diagnosis. Always consult a qualified cardiologist for clinical decisions.
+<div style="background-color: #FFFBEB !important; border: 2px solid #F59E0B !important; border-radius: 8px; padding: 14px; margin-top: 20px; margin-bottom: 15px; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
+    <p style="color: #78350F !important; font-size: 0.88rem; margin: 0; line-height: 1.5; font-weight: 500;">
+        <b style="color: #92400E !important; font-weight: 700;">⚕️ Medical Disclaimer:</b> <span style="color: #78350F !important;">This tool is developed as a B.Tech final year research project at NRI Institute of Technology, Agiripalli. It is intended for academic demonstration and decision-support purposes only. It does NOT constitute medical advice and should NOT be used as a substitute for professional medical diagnosis. Always consult a qualified cardiologist for clinical decisions.</span>
     </p>
 </div>
 """, unsafe_allow_html=True)
 
 st.markdown("""
-<p style="text-align: center; color: #64748B; font-size: 0.82rem; margin-top: 10px; margin-bottom: 25px;">
+<p style="text-align: center; color: #94A3B8 !important; font-size: 0.82rem; margin-top: 10px; margin-bottom: 25px; font-weight: 500;">
     Powered by PennyLane (Quantum ML) + PyTorch + KAN | Model accuracy: ~92.5% on UCI Heart Disease Dataset (918 patients) | © 2026 NRI Agiripalli B.Tech Project
 </p>
 """, unsafe_allow_html=True)
