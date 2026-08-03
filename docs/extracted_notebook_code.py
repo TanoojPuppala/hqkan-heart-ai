@@ -2,9 +2,8 @@
 # ╔══════════════════════════════════════════════════════════╗
 # ║  CELL 1 — Install All Libraries                         ║
 # ╚══════════════════════════════════════════════════════════╝
-!pip install -q pennylane pennylane-lightning torch
-!pip install -q scikit-learn pandas numpy
-!pip install -q shap matplotlib seaborn joblib
+import sys, subprocess
+subprocess.run([sys.executable, "-m", "pip", "install", "-q", "pennylane", "torch", "scikit-learn", "pandas", "numpy", "shap", "matplotlib", "seaborn", "joblib"])
 print("All libraries installed successfully")
 
 
@@ -958,8 +957,9 @@ print(f"COPY THIS PASSWORD FOR LOCALTUNNEL: {ip}")
 print("Open the URL below, paste this IP as password when asked")
 print("-" * 50)
 
-!streamlit run app.py &>/content/logs.txt &
-!npx localtunnel --port 8501
+# # Run streamlit app in background in colab:
+# subprocess.Popen(["streamlit", "run", "app.py"])
+# subprocess.Popen(["npx", "localtunnel", "--port", "8501"])
 
 # === CELL 33 ===
 import joblib, torch
