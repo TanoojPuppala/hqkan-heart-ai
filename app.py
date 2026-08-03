@@ -167,8 +167,19 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+# 7. Horizontal Divider & 3-Line Centered Footer
+st.divider()
+
 st.markdown("""
-<p style="text-align: center; color: #94A3B8 !important; font-size: 0.82rem; margin-top: 10px; margin-bottom: 25px; font-weight: 500;">
-    Powered by PennyLane (Quantum ML) + PyTorch + KAN | Model accuracy: ~92.5% on UCI Heart Disease Dataset (918 patients) | © 2026 NRI Agiripalli B.Tech Project
-</p>
+<div style="text-align: center; margin-top: 15px; margin-bottom: 25px;">
+    <p class="footer-line1">
+        HQ-KAN: Hybrid Quantum Kolmogorov-Arnold Network for Heart Disease Prediction
+    </p>
+    <p class="footer-line2">
+        B.Tech Computer Science (Data Science) | NRI Institute of Technology, Agiripalli | 2025-26
+    </p>
+    <p class="footer-line3">
+        Built with PennyLane + PyTorch + KAN + Streamlit | Dataset: UCI Heart Disease (918 patients)
+    </p>
+</div>
 """, unsafe_allow_html=True)

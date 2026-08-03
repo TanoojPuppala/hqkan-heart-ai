@@ -186,6 +186,39 @@ code {
     margin-top: 40px;
 }
 
+.footer-line1 {
+    color: #1E293B;
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+}
+
+.footer-line2 {
+    color: #64748B;
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+    font-weight: 500;
+}
+
+.footer-line3 {
+    color: #94A3B8;
+    font-size: 0.8rem;
+    margin-top: 2px;
+    font-weight: 400;
+}
+
+@media (prefers-color-scheme: dark) {
+    .footer-line1 {
+        color: #F8FAFC !important;
+    }
+    .footer-line2 {
+        color: #CBD5E1 !important;
+    }
+    .footer-line3 {
+        color: #94A3B8 !important;
+    }
+}
+
 /* Footer & Footer Branding */
 footer {visibility: hidden !important; display: none !important;}
 [data-testid="stFooter"] {display: none !important;}
